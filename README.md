@@ -8,4 +8,4 @@
 ### 6.  `python manage.py createsuperuser`
 ### 7.  `python manage.py runserver`
 ### 8. Done..
-### go to http://127.0.0.1:8000/ in browser.
+### project live on http://127.0.0.1:8000/ .
