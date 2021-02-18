@@ -1,5 +1,5 @@
 # vaccine_management_system
-## To Satrt Working
+## To Start Working
 ### 1. Clone
 ### 2. `pip install django`
 ### 3. cd vaccine management system>
