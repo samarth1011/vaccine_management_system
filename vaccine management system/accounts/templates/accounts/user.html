@@ -1,0 +1,125 @@
+{%  extends 'accounts/main.html' %}
+{% block content %}
+<script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+
+<div class="wrapper">
+    <div class="sidebar">
+		
+        <h3 style="color: white;">Hello, {{user}}</h3>
+        <ul>
+            <li><a href="{% url 'home' %}" class="menu"><i class="fas fa-home"></i>Dashboard</a></li>
+			<li><a href="{% url 'create_company' customer.id %}" class="menu"><i class="fas fa-address-card"></i>Add Child</a></li>
+			
+            <li><a href="{%url 'logout' %}"class="menu"><i class="fas fa-user"></i>Logout</a></li>
+            <!-- <li><a href="#"><i class="fas fa-project-diagram"></i>portfolio</a></li>
+            <li><a href="#"><i class="fas fa-blog"></i>Blogs</a></li>
+            <li><a href="#"><i class="fas fa-address-book"></i>Contact</a></li>
+            <li><a href="#"><i class="fas fa-map-pin"></i>Map</a></li> -->
+        </ul> 
+        <div class="social_media">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+    <div class="main_content">
+		
+		<!-- {% for message in messages %}
+		<br>
+      <div  class="alert alert-success">
+          {{message}}
+
+      </div>
+      {%endfor%}
+		{% if customer.is_shortlisted %}
+			<a class="btn btn-info" href="">Shortlisted</a>
+			
+			
+
+
+			{%endif%} -->
+		<!-- <div class="col">
+			<div class="col-md-3 ">
+				<div class="card text-center text-white mb-3 " id="orders-pending" style="background-color: #7CD1C0;">
+					  <div class="card-header">
+						  <h5 class="card-title ">Total Companies Added</h5>
+					  </div>
+					  <div class="card-body">
+						<h3 class="card-title">{{total_orders}}</h3>
+					  </div>
+				</div>
+			</div>
+		</div> -->
+
+		
+	{%  include 'accounts/status.html' %}
+
+	{% if messages %}
+	<ul class="messages">
+		{% for message in messages %}
+		<li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+		{% endfor %}
+	</ul>
+	{% endif %}
+	<div class="row">
+		<div class="col-md-5">
+			<!-- <h class="text-info mx-auto" id="loader_disp"> -->
+				
+			<!-- </h5> -->
+			
+	
+			
+			<h5>CHILD:</h5>
+		
+			<div class="card card-body overflow-scroll">
+				<a class="btn btn-primary  btn-sm btn-block" href="{% url 'create_company' customer.id %}">Add Child</a>
+				<table class="table table-sm">
+					<tr>
+						
+						<th>User</th>
+						
+						<th>Action</th>
+					</tr>
+	
+					{% for order in orders %}
+						<tr>
+							<td>{{order.child_name}}</td>
+							<td><a class="btn btn-sm btn-info" href="{% url 'customer' order.id %}">View</a></td>
+
+							
+							
+						</tr>
+					{% endfor %}
+	
+				</table>
+			</div>
+		</div>
+		<div class="col-md-7">
+			<h5>LATEST 5 PENDING VACCINES</h5>
+			
+			<div class="card card-body">
+				
+				<table class="table table-sm">
+					<tr>
+						<th>Product</th>
+						<th>Date Orderd</th>
+						<th>Status</th>
+						<th>Update</th>
+						<th>Remove</th>
+					</tr>
+	
+					{% for order in orders %}
+						<tr>
+							<td>{{order.product}}</td>
+							<td>{{order.date_created}}</td>
+							<td>{{order.status}}</td>
+							
+						</tr>
+					{% endfor %}
+	
+			
+				</table>
+			</div>
+</div>
+
+{% endblock content %}

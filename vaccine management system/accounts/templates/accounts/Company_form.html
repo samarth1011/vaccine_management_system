@@ -1,0 +1,97 @@
+{% extends 'accounts/main.html' %}
+{% load static %}
+{% block content%}
+
+<script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+
+<div class="wrapper">
+    <div class="sidebar">
+        <h3 style="color: white;">Hello, {{user}}</h3>
+        <ul>
+            <li><a href="{% url 'home' %}" class="menu"><i class="fas fa-home"></i>Dashboard</a></li>
+            <li><a href="{% url 'create_company' customer.id%}" class="menu"><i class="fas fa-user"></i>Add Child</a></li>
+
+            <li><a href="{% url 'logout' %}" class="menu"><i class="fas fa-address-card"></i>Logout</a></li>
+            <!-- <li><a href="#"><i class="fas fa-project-diagram"></i>portfolio</a></li>
+            <li><a href="#"><i class="fas fa-blog"></i>Blogs</a></li>
+            <li><a href="#"><i class="fas fa-address-book"></i>Contact</a></li>
+            <li><a href="#"><i class="fas fa-map-pin"></i>Map</a></li> -->
+        </ul> 
+        <div class="social_media">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+    <div class="main_content  pl-5">
+<form action="" method="POST">
+    {% csrf_token %}
+    
+    <br>
+    <div class=" mt-3  fieldWrapper">
+        
+        <label for="{{ form.company_name.id_for_label }}">Child Name:</label>
+        {{ form.child_name }}
+        {{ form.child_name.errors }}
+    </div>
+    <br>
+    <!-- <div class="fieldWrapper">
+       
+        <label for="{{ form.address.id_for_label }}">Company Address:</label>
+        {{ form.address }}
+        {{ form.address.errors }}
+    </div>
+    <br> -->
+    <div class="fieldWrapper">
+       
+        <label for="{{ form.adhar_card_number.id_for_label }}">Child Age:</label>
+        {{ form.child_age_attributes }}&nbsp;{{form.child_age_integer}}
+        {{ form.child_age.errors }}
+    </div>
+    <br>
+    <div class="fieldWrapper">
+        
+        <label for="{{ form.mobile_number.id_for_label }}">Child Gender:</label>
+        {{ form.child_gender }}
+        {{ form.child_gender.errors }}
+    </div>
+    <br> 
+    <!-- <div class="fieldWrapper">
+        
+        <label for="{{ form.website_address.id_for_label }}">Website Address:</label>
+        {{ form.website_address }}
+        {{ form.website_address.errors }}
+    </div> -->
+    <br>
+    <div class="fieldWrapper">
+       
+        <label for="{{ form.date_of_birth.id_for_label }}">Date of Birth:</label>
+        {{ form.date_of_birth }}
+        {{ form.date_of_birth.errors }}
+    </div>
+    <br>
+    <!-- <div class="fieldWrapper">
+        
+        <label for="{{ form.state.id_for_label }}">State:  </label>
+        {{ form.state }}
+        {{ form.state.errors }}
+    </div>
+    <br> -->
+    <!-- <div class="fieldWrapper">
+        
+        <label for="{{ form.country.id_for_label }}">Country:</label>
+        {{ form.country }}
+		
+        {{ form.country.errors }}
+        <!-- <h1></h1>
+        <h1></h1>
+        <h1></h1> -->
+    <!-- </div> -->
+    <!-- <br> -->
+    <button type="submit" style="margin-left: 25%;" class="btn btn-dark" name="submit">Submit</button>
+
+</form>
+
+
+
+{% endblock %}

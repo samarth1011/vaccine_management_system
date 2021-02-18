@@ -1,0 +1,136 @@
+{%  extends 'accounts/main.html' %}
+
+{% block content %}
+
+	
+
+<!-- <br> -->
+<script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+
+<div class="wrapper">
+    <div class="sidebar">
+		
+        <h3 style="color: white;">Hello, {{user}}</h3>
+        <ul>
+            <li><a href="{% url 'home' %}" class="menu"><i class="fas fa-home"></i>Dashboard</a></li>
+			<li><a href="{% url 'create_company' customer.id %}" class="menu"><i class="fas fa-address-card"></i>Add Child</a></li>
+            <li><a href="{%url 'logout' %}"class="menu"><i class="fas fa-user"></i>Logout</a></li>
+            <!-- <li><a href="#"><i class="fas fa-project-diagram"></i>portfolio</a></li>
+            <li><a href="#"><i class="fas fa-blog"></i>Blogs</a></li>
+            <li><a href="#"><i class="fas fa-address-book"></i>Contact</a></li>
+            <li><a href="#"><i class="fas fa-map-pin"></i>Map</a></li> -->
+        </ul> 
+        <div class="social_media">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+    <div class="main_content">
+	<!-- {%  include 'accounts/status.html' %} -->
+
+<br>
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<h5>Child Name: {{customer.child_name}}</h5>
+			<hr>
+			{% if customer.is_shortlisted %}
+			
+			<span class="d-inline mb-2"><b>Shortlist status:</b>
+				Shortlisted</span>
+			<!-- <a class="btn btn-info  btn-sm btn-block" href="">Shortlisted</a> -->
+			{%elif order_count < 1 %}
+			<a class="btn btn-info  btn-sm btn-block"  id="no_companies" onclick="no_companies_func()" href="">Shortlist User</a>
+			{%elif customer.is_mail_send%}
+			<span class="d-inline mb-2"><b>Shortlist status:</b>
+			Waiting for confirmation..</span>
+			
+			{%endif%}
+
+			<!-- <a class="btn btn-outline-info  btn-sm btn-block" href="">Update User Info</a> -->
+			<a class="btn btn-outline-info  btn-sm btn-block" href="{% url 'create_company' customer.id %}">Add Child</a>
+
+		</div>
+	</div>
+
+	<div class="col-md">
+		<div class="card card-body">
+			<h5>Contact Information</h5>
+			<hr>
+			<p>Age: {{customer.child_age_integer}} {{customer.child_age_attributes}}</p>
+			<p>DOB: {{customer.date_of_birth}}</p>
+		</div>	
+	</div>
+
+	<div class="col-md">
+		
+		<div class="card card-body">
+			<h5>Vaccine Pending</h5>
+			<hr>
+			<h1 style="text-align: center;padding: 10px">{{total_vaccine}}</h1>
+		</div>
+	</div>
+</div>
+
+
+<br>
+<!-- <div class="row">
+	<div class="col">
+		<div class="card card-body">
+
+			 <form method="get">
+				{{myFilter.form}}
+
+		    <button class="btn btn-primary" type="submit">Search</button>
+		  </form> -->
+
+		<!-- </div> -->
+	<!-- </div> -->
+	
+<!-- </div> -->
+
+<h5>Vaccines Pending</h5>
+<br>
+<div class="row overflow-auto">
+	<div class="col-md ">
+		<div class="card card-body scrollable" style="overflow: scroll;
+		height: 420px;">
+			<!-- <div class="scrollable"> -->
+			<table class="table table-sm overflow-auto">
+				<tr>
+					<th>Vaccine Name</th>
+					<th>Age to be taken</th>
+					<th>Use</th>
+					
+                    <th>Actions</th>
+					<th>Remove</th>
+                    <!-- <th>Is Shortlisted</th> -->
+				</tr>
+
+				{% for vaccine in vaccines %}
+
+				<tr>
+					<td>{{vaccine.vaccine_name}}</td>
+					<td>{{vaccine.to_be_taken_age}}</td>
+					<td></td>
+					<td><a href=""> Update</a></td>
+					<td><a href="">Already Taken</a></td>
+
+                    <!-- <td>{{order.mobile_number}}</td>
+                    <td>{{order.date_of_birth}}</td>
+                    <td>{{order.state}}</td>
+                    <td>{{order.country}}</td> -->
+                    <!-- <td>{{order.is_shortlisted}}</td> -->
+
+					
+				</tr>
+				{% endfor %}
+
+			</table>
+			<!-- </div> -->
+		</div>
+	</div>
+</div>
+
+{% endblock %}
